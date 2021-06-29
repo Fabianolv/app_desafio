@@ -5,36 +5,20 @@ import {
   Text,
   ActivityIndicator,
 } from 'react-native';
+import styles from './Button.styles';
 
 interface ButtonProps extends TouchableOpacityProps {
   label: string;
   loading?: boolean;
 }
 
-const Button: React.FC<ButtonProps> = ({label, loading, ...rest}) => {
+const Button: React.FC<ButtonProps> = ({ label, loading, ...rest }) => {
   return (
-    <TouchableOpacity
-      style={{
-        backgroundColor: '#e41640',
-        width: 300,
-        height: 45,
-        alignItems: 'center',
-        borderRadius: 50,
-        justifyContent: 'center',
-        alignContent: 'center',
-      }}
-      {...rest}>
+    <TouchableOpacity style={styles.root} {...rest}>
       {loading ? (
-        <ActivityIndicator color="#fff" />
+        <ActivityIndicator testID="loading" color="#fff" />
       ) : (
-        <Text
-          style={{
-            display: 'flex',
-            color: '#fff',
-            textAlign: 'center',
-          }}>
-          {label}
-        </Text>
+        <Text style={styles.label}>{label}</Text>
       )}
     </TouchableOpacity>
   );

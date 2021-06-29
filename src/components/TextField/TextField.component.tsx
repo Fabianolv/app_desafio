@@ -1,21 +1,15 @@
 import React from 'react';
-import {View, Text, TextInputProps, TextInput, Platform} from 'react-native';
+import { View, Text, TextInputProps, TextInput } from 'react-native';
+import styles from './TextField.styles';
 
 interface TextFieldProps extends TextInputProps {
   label: string;
 }
 
-const TextField: React.FC<TextFieldProps> = ({label, ...inputProps}) => (
-  <View style={{margin: 8}}>
+const TextField: React.FC<TextFieldProps> = ({ label, ...inputProps }) => (
+  <View style={styles.root}>
     <Text>{label}</Text>
-    <TextInput
-      style={{
-        borderBottomWidth: 1,
-        borderBottomColor: '#e1e1e1',
-        paddingVertical: 8,
-      }}
-      {...inputProps}
-    />
+    <TextInput style={styles.input} {...inputProps} />
   </View>
 );
 

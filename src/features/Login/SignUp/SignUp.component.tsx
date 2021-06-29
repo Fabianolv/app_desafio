@@ -1,28 +1,32 @@
-import React, {useContext} from 'react';
-import {View} from 'react-native';
-import {NavigationContext} from 'react-navigation';
+import React, { useContext } from 'react';
+import { View } from 'react-native';
+import { NavigationContext } from 'react-navigation';
 
 import TextField from '../../../components/TextField/TextField.component';
 import Button from '../../../components/Button/Button.component';
+import styles from './SignUp.styles';
 
 const SignUp: React.FC = () => {
-  const {navigate} = useContext(NavigationContext);
+  const { navigate } = useContext(NavigationContext);
+
+  const onSubmit = () => {
+    navigate('SignIn');
+  };
 
   return (
-    <View
-      style={{
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: 32,
-      }}>
-      <View style={{width: '100%', justifyContent: 'center', flex: 1}}>
+    <View style={styles.root}>
+      <View style={styles.content}>
         <TextField label="Usuario" />
-        <TextField label="Senha" />
-        <TextField label="Confirme sua senha" />
+        <TextField secureTextEntry label="Senha" />
+        <TextField secureTextEntry label="Confirme sua senha" />
       </View>
-      <View style={{flex: 1, justifyContent: 'flex-end'}}>
-        <Button activeOpacity={0.8} label="Cadastrar" loading={false} />
+      <View style={styles.button}>
+        <Button
+          activeOpacity={0.8}
+          label="Cadastrar"
+          loading={false}
+          onPress={() => onSubmit()}
+        />
       </View>
     </View>
   );
