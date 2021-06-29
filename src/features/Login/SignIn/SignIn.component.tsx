@@ -1,8 +1,9 @@
 import React, { useContext } from 'react';
-import { View, Text, Button } from 'react-native';
+import { Image, View } from 'react-native';
 import { NavigationContext } from 'react-navigation';
-
-import Username from '../components/Username/Username.component';
+import TextField from '../../../components/TextField/TextField.component';
+import Button from '../../../components/Button/Button.component';
+import styles from './SignIn.styles';
 
 const SignIn: React.FC = () => {
   const { navigate } = useContext(NavigationContext);
@@ -11,12 +12,38 @@ const SignIn: React.FC = () => {
     navigate('SignUp');
   };
 
+  const login = () => {
+    console.log('oe');
+  }
+
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Button title="Sign Up" onPress={navigationToSignUp} />
-      <Text>SignIn</Text>
-      <Username />
-      <Button title=">" onPress={navigationToSignUp} />
+    <View style={styles.root}>
+      <View>
+        <Image
+          style={styles.image}
+          source={{uri: 'https://logos-download.com/wp-content/uploads/2018/01/CIT_logo_RGB.png'}}
+        />
+      </View>
+      <View style={styles.content}>
+        <TextField label="Usuario" />
+        <TextField secureTextEntry label="Senha" />
+      </View>
+      <View style={styles.buttonLogin}>
+        <Button
+          activeOpacity={0.8}
+          label="Login"
+          loading={false}
+          onPress={() => login()}
+        />
+      </View>
+      <View style={styles.button}>
+        <Button
+          activeOpacity={0.8}
+          label="Cadastrar"
+          loading={false}
+          onPress={() => navigationToSignUp()}
+        />
+      </View>
     </View>
   );
 };
